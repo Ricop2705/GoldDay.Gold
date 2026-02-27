@@ -36,8 +36,6 @@ export default async function handler(req, res) {
     const harga =
       Math.round(weight * gold.price * MARKUP);
 
-    el.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
-
     return {
       ...p,
       weight,
