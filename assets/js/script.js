@@ -1,3 +1,6 @@
+// GLOBAL GOLD STATE
+let lastLiveGold = 0;
+
 let CART = JSON.parse(localStorage.getItem("cart")) || [];
 
 console.log("SCRIPT CONNECTED");
