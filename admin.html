@@ -1,0 +1,431 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Dashboard Luxury</title>
+
+<style>
+
+/* ===== BACKGROUND LUXURY ===== */
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050505;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* ===== GLASS PANEL ===== */
+.panel{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,215,0,0.2);
+  padding:40px;
+  border-radius:16px;
+  width:320px;
+  box-shadow:0 0 40px rgba(255,215,0,0.1);
+}
+
+h1{
+  color:gold;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+/* ===== INPUT PREMIUM ===== */
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:none;
+  background:#111;
+  color:#fff;
+}
+
+/* ===== GOLD BUTTON ===== */
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(45deg,#cfae3c,#ffdf70);
+  color:#000;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px gold;
+}
+
+/* LOGIN PANEL */
+#loginBox{display:block;}
+#adminBox{display:none;}
+
+</style>
+</head>
+<body>
+
+<div class="panel">
+
+  <!-- LOGIN -->
+  <div id="loginBox">
+    <h1>Admin Login</h1>
+    <input id="password" type="password" placeholder="Password Admin">
+    <button onclick="loginAdmin()">Login Secure</button>
+    <p></p>
+    <button id="logoutBtn">Logout</button>
+
+  </div>
+  
+
+  <!-- ADMIN FORM -->
+  <div id="adminBox">
+    <h1>Tambah Produk</h1>
+
+    <hr style="margin:20px 0;border-color:#333">
+
+<h1>Daftar Produk</h1>
+<div id="produkAdminList"></div>
+
+    <input id="nama" placeholder="Nama Produk">
+    <input id="harga" placeholder="Harga">
+    <input id="badge" placeholder="Badge">
+    <input id="gambar" placeholder="URL Gambar Produk">
+
+    <button onclick="tambahProduk()">Tambah Produk</button>
+  </div>
+
+</div>
+
+
+<script>
+
+let ADMIN_TOKEN = "";
+
+/* ===== LOGIN UI LUXURY ===== */
+function loginAdmin(){
+
+  const pass = document.getElementById("password").value;
+
+  if(pass === "emas123"){
+    ADMIN_TOKEN = "EMAS_ADMIN_2026";
+
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("adminBox").style.display="block";
+    loadProdukAdmin();
+
+  }else{
+    alert("Password salah!");
+  }
+}
+
+/* ===== TAMBAH PRODUK ===== */
+async function tambahProduk(){
+  loadProdukAdmin();
+
+  const nama = document.getElementById("nama").value;
+  const harga = document.getElementById("harga").value;
+  const badge = document.getElementById("badge").value;
+  const gambar = document.getElementById("gambar").value;
+
+
+  await fetch("/api/tambahProduk",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "authorization":ADMIN_TOKEN
+    },
+    body:JSON.stringify({nama,harga,badge,gambar})
+  });
+
+  alert("Produk berhasil ditambah!");
+}
+
+/* ===== LOAD PRODUK ADMIN REALTIME ===== */
+async function loadProdukAdmin(){
+
+  const res = await fetch("/api/produk");
+  const data = await res.json();
+
+  const wrap = document.getElementById("produkAdminList");
+  wrap.innerHTML="";
+
+  data.forEach(p=>{
+
+    const item = document.createElement("div");
+
+    item.style.border="1px solid #333";
+    item.style.padding="10px";
+    item.style.marginBottom="10px";
+    item.style.borderRadius="8px";
+
+    item.innerHTML = `
+      <b>${p.nama}</b><br>
+      ${p.harga} - ${p.badge}<br>
+      <button onclick="hapusProduk('${p._id}')">Hapus</button>
+    `;
+
+    wrap.appendChild(item);
+  });
+}
+
+async function hapusProduk(id){
+
+  await fetch("/api/hapusProduk",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "authorization":ADMIN_TOKEN
+    },
+    body:JSON.stringify({id})
+  });
+
+  loadProdukAdmin();
+}
+
+</script>
+
+<script>
+/* ===== ADMIN SESSION GUARD ULTRA ===== */
+
+const token = localStorage.getItem("admin_token");
+
+if(!token){
+  console.log("⛔ Tidak ada session admin");
+  window.location.href="/login.html";
+}
+</script>
+
+<script>
+document.getElementById("logoutBtn").onclick = ()=>{
+  localStorage.removeItem("admin_token");
+  window.location.href="/login.html";
+}
+</script>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Dashboard Luxury</title>
+
+<style>
+
+/* ===== BACKGROUND LUXURY ===== */
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050505;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* ===== GLASS PANEL ===== */
+.panel{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,215,0,0.2);
+  padding:40px;
+  border-radius:16px;
+  width:320px;
+  box-shadow:0 0 40px rgba(255,215,0,0.1);
+}
+
+h1{
+  color:gold;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+/* ===== INPUT PREMIUM ===== */
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:none;
+  background:#111;
+  color:#fff;
+}
+
+/* ===== GOLD BUTTON ===== */
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(45deg,#cfae3c,#ffdf70);
+  color:#000;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px gold;
+}
+
+/* LOGIN PANEL */
+#loginBox{display:block;}
+#adminBox{display:none;}
+
+</style>
+</head>
+<body>
+
+<div class="panel">
+
+  <!-- LOGIN -->
+  <div id="loginBox">
+    <h1>Admin Login</h1>
+    <input id="password" type="password" placeholder="Password Admin">
+    <button onclick="loginAdmin()">Login Secure</button>
+    <p></p>
+    <button id="logoutBtn">Logout</button>
+
+  </div>
+  
+
+  <!-- ADMIN FORM -->
+  <div id="adminBox">
+    <h1>Tambah Produk</h1>
+
+    <hr style="margin:20px 0;border-color:#333">
+
+<h1>Daftar Produk</h1>
+<div id="produkAdminList"></div>
+
+    <input id="nama" placeholder="Nama Produk">
+    <input id="harga" placeholder="Harga">
+    <input id="badge" placeholder="Badge">
+    <input id="gambar" placeholder="URL Gambar Produk">
+
+    <button onclick="tambahProduk()">Tambah Produk</button>
+  </div>
+
+</div>
+
+
+<script>
+
+let ADMIN_TOKEN = "";
+
+/* ===== LOGIN UI LUXURY ===== */
+function loginAdmin(){
+
+  const pass = document.getElementById("password").value;
+
+  if(pass === "emas123"){
+    ADMIN_TOKEN = "EMAS_ADMIN_2026";
+
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("adminBox").style.display="block";
+    loadProdukAdmin();
+
+  }else{
+    alert("Password salah!");
+  }
+}
+
+/* ===== TAMBAH PRODUK ===== */
+async function tambahProduk(){
+  loadProdukAdmin();
+
+  const nama = document.getElementById("nama").value;
+  const harga = document.getElementById("harga").value;
+  const badge = document.getElementById("badge").value;
+  const gambar = document.getElementById("gambar").value;
+
+
+  await fetch("/api/tambahProduk",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "authorization":ADMIN_TOKEN
+    },
+    body:JSON.stringify({nama,harga,badge,gambar})
+  });
+
+  alert("Produk berhasil ditambah!");
+}
+
+/* ===== LOAD PRODUK ADMIN REALTIME ===== */
+async function loadProdukAdmin(){
+
+  const res = await fetch("/api/produk");
+  const data = await res.json();
+
+  const wrap = document.getElementById("produkAdminList");
+  wrap.innerHTML="";
+
+  data.forEach(p=>{
+
+    const item = document.createElement("div");
+
+    item.style.border="1px solid #333";
+    item.style.padding="10px";
+    item.style.marginBottom="10px";
+    item.style.borderRadius="8px";
+
+    item.innerHTML = `
+      <b>${p.nama}</b><br>
+      ${p.harga} - ${p.badge}<br>
+      <button onclick="hapusProduk('${p._id}')">Hapus</button>
+    `;
+
+    wrap.appendChild(item);
+  });
+}
+
+async function hapusProduk(id){
+
+  await fetch("/api/hapusProduk",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "authorization":ADMIN_TOKEN
+    },
+    body:JSON.stringify({id})
+  });
+
+  loadProdukAdmin();
+}
+
+</script>
+
+<script>
+/* ===== ADMIN SESSION GUARD ULTRA ===== */
+
+const token = localStorage.getItem("admin_token");
+
+if(!token){
+  console.log("⛔ Tidak ada session admin");
+  window.location.href="/login.html";
+}
+</script>
+
+<script>
+document.getElementById("logoutBtn").onclick = ()=>{
+  localStorage.removeItem("admin_token");
+  window.location.href="/login.html";
+}
+</script>
+</body>
+</html>
+>>>>>>> 1e59d521d95e2963f38720f5b1509d18194af5f3

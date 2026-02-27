@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<link rel="icon" href="data:,">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emas Antam Premium</title>
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+  
+  <div class="gold-ticker">
+
+  <span class="gold-label">EMAS ANTAM</span>
+
+  <span id="goldDirection">▲</span>
+  <span id="goldPercent">0.00%</span>
+
+  <span id="goldPrice">Rp --</span>
+
+  <canvas id="goldChart" width="180" height="40"></canvas>
+  
+  <span id="goldTime" class="gold-time">
+    Updated --
+  </span>
+
+</div>
+
+<div class="gold-dust" id="goldDust"></div>
+
+<header class="navbar">
+
+  <div class="logo">GOLD DAY.GOLD</div>
+  <nav>
+    <ul class="menu">
+      <li><a href="#beranda" data-page="home">Beranda</a></li>
+
+      <li class="dropdown">
+        <a href="#produk" data-page="produk">Produk</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Emas 1 Gram</a></li>
+          <li><a href="#">Emas 5 Gram</a></li>
+          <li><a href="#">Emas 10 Gram</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#membership" data-page="membership">Membership</a></li>
+      <li><a href="#kontak" data-page="kontak">Kontak</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right">
+<div class="profile-area">
+
+  <a id="loginBtn">Login</a>
+
+  <div id="userMenu" class="user-menu">
+    <div class="profile-avatar" id="avatar">U</div>
+
+    <div class="dropdown-user">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="cart-icon">
+  <button id="cartIcon" class="icon-btn">
+    🛒 <span id="cartCount">0</span>
+  </button>
+</div>
+
+</header>
+
+
+<main id="appContent">
+<section id="beranda" class="hero">
+
+  <div class="aurum-light"></div>
+  <div class="aurum-particles"></div>
+  <div class="gold-smoke"></div>
+
+  <div class="container hero-grid">
+
+    <div class="hero-left">
+      <h1 class="hero-title cinematic">
+        INVESTASI EMAS ANTAM<br>
+        <span></span>
+      </h1>
+
+      <p class="cinematic">
+        Platform jual beli emas Antam dengan tampilan luxury,
+        harga realtime, dan transaksi aman untuk member.
+      </p>
+
+      <div class="hero-actions cinematic">
+        <button class="gold-btn">Mulai Investasi</button>
+        <a href="#produk" class="hero-link">Lihat Produk</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <img src="img/gold-bar.png" class="hero-gold">
+    </div>
+
+  </div>
+</section>
+</main>
+
+<section id="produk" class="produk">
+  <h2>Produk Emas Antam</h2>
+  <div class="produk-grid" id="produkList"></div>
+</section>
+
+<footer>
+  <p style="text-align:center;">© 2026 Antam Gold Official</p>
+</footer>
+
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3>Keranjang</h3>
+    <button id="closeCart" class="cart-close">✕</button>
+  </div>
+  <div class="cart-content" id="cartItems"></div>
+  <div class="cart-footer">
+    <h3 id="cartSubtotal" class="cart-subtotal">Subtotal : Rp 0</h3>
+    <a id="checkoutWA" class="checkout-btn" target="_blank">
+      Checkout WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="login-modal">
+
+  <div class="login-card">
+
+    <!-- HEADER -->
+    <div class="login-header">
+      <div class="lang">English ▾</div>
+
+      <div class="aut">
+        <span class="active" id="tabLogin">Sign in</span>
+        <span>|</span>
+        <span id="tabRegister">Register</span>
+      </div>
+
+      <span id="closeLogin" class="login-close">✕</span>
+    </div>
+
+    <!-- TITLE -->
+    <h1>Hello !</h1>
+    <p class="subtitle">Welcome Back</p>
+
+    <!-- LOGIN FORM -->
+     <div id="loginBox">
+    <form id="loginForm" class="auth-form active">
+
+      <input id="loginEmail" type="email" placeholder="Enter Email">
+      <input id="loginPassword" type="password" placeholder="Password">
+
+      <button type="button" id="doLogin" class="gold-btn">
+        Sign In
+      </button>
+
+      <div class="divider">
+        <span>Or continue with</span>
+      </div>
+
+      <div class="social">
+        <button type="button">G</button>
+        <button type="button"></button>
+        <button type="button">IG</button>
+      </div>
+
+      <p class="swith-account">
+        Don't have an account ?
+        <span id="openRegister">Create Account!</span>
+      </p>
+
+    </form>
+</div>
+    <!-- REGISTER FORM -->
+     <div id="registerBox" style="display:none;">
+         <form id="registerForm" class="auth-form" style="display:none;">
+
+      <input id="regName" placeholder="Full Name">
+      <input id="regEmail" placeholder="Email">
+      <input id="regPhone" placeholder="Phone Number">
+      <input id="regPassword" type="password" placeholder="Password">
+      <input id="regConfirm" type="password" placeholder="Confirm Password">
+      
+      <button type="button" id="registerSubmit" class="gold-btn">
+        Create Account
+      </button>
+
+      <p class="auth-switch">
+        Already have an account?
+        <span id="goLogin">Sign In</span>
+      </p>
+
+    </form>
+    </div>  
+  </div> <!-- login-card -->
+</div> <!-- login-modal -->
+
+<script src="./assets/js/script.js"></script>
+</body>
+</html>
+

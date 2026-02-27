@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "20": "^3.1.9",
+    "bcryptjs": "^3.0.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "lts": "^2.0.0",
+<<<<<<< HEAD
+    "mongodb": "^6.0.0",
+=======
+    "mongodb": "^7.1.0",
+>>>>>>> 1e59d521d95e2963f38720f5b1509d18194af5f3
+    "mongoose": "^9.2.1",
+    "node": "^25.6.1",
+    "node-fetch": "^3.3.2"
+  },
+  "name": "data-website-emas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

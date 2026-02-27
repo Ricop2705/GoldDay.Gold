@@ -1,0 +1,207 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<style>
+body{
+  background:#000;
+  color:#fff;
+  font-family:sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+form{
+  background:#111;
+  padding:40px;
+  border-radius:12px;
+  border:1px solid gold;
+}
+
+input,button{
+  display:block;
+  margin:10px 0;
+  padding:10px;
+  width:220px;
+}
+
+button{
+  background:gold;
+  border:none;
+  cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+
+<form id="loginForm">
+  <h2>Login Admin</h2>
+
+  <input id="username" autocomplete="username" placeholder="Username">
+  <input id="password" type="password" autocomplete="current-password" placeholder="Password">
+
+
+  <button type="submit">Login</button>
+
+</div>
+
+<div class="g_id_signin"></div>
+</form>
+
+<script>
+
+if(localStorage.getItem("goldUserToken")){
+  window.location.href="/admin.html";
+}
+
+</script>
+<script>
+
+document.querySelector("form").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("/api/login.js",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify({ username, password })
+  });
+
+  const data = await res.json();
+
+  console.log("LOGIN RESULT:",data);
+
+  /* ===== INI YANG WAJIB ADA ===== */
+
+  if(data.success){
+
+    localStorage.setItem("admin_token",data.token);
+
+    window.location.href="/admin.html";   // 🔥 REDIRECT
+
+  }else{
+
+    alert("Login gagal!");
+
+  }
+
+});
+
+</script>
+
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<style>
+body{
+  background:#000;
+  color:#fff;
+  font-family:sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+form{
+  background:#111;
+  padding:40px;
+  border-radius:12px;
+  border:1px solid gold;
+}
+
+input,button{
+  display:block;
+  margin:10px 0;
+  padding:10px;
+  width:220px;
+}
+
+button{
+  background:gold;
+  border:none;
+  cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+
+<form id="loginForm">
+  <h2>Login Admin</h2>
+
+  <input id="username" autocomplete="username" placeholder="Username">
+  <input id="password" type="password" autocomplete="current-password" placeholder="Password">
+
+
+  <button type="submit">Login</button>
+
+</div>
+
+<div class="g_id_signin"></div>
+</form>
+
+<script>
+
+if(localStorage.getItem("goldUserToken")){
+  window.location.href="/admin.html";
+}
+
+</script>
+<script>
+
+document.querySelector("form").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("/api/login.js",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify({ username, password })
+  });
+
+  const data = await res.json();
+
+  console.log("LOGIN RESULT:",data);
+
+  /* ===== INI YANG WAJIB ADA ===== */
+
+  if(data.success){
+
+    localStorage.setItem("admin_token",data.token);
+
+    window.location.href="/admin.html";   // 🔥 REDIRECT
+
+  }else{
+
+    alert("Login gagal!");
+
+  }
+
+});
+
+</script>
+
+
+</body>
+</html>
+>>>>>>> 1e59d521d95e2963f38720f5b1509d18194af5f3
