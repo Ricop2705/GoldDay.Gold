@@ -1,4 +1,3 @@
-
 import getClient from "../lib/mongodb.js";
 import { getGoldPrice, startGoldEngine } from "./gold-engine.js";
 
@@ -6,7 +5,7 @@ export default async function handler(req, res) {
   try {
 
     /* CONNECT MONGODB */
-    const client = await getClient();
+    const client = await getClient(); 
     const db = client.db("emasDB");
 
     console.log("✅ MongoDB READY");
@@ -36,6 +35,8 @@ export default async function handler(req, res) {
 
     const harga =
       Math.round(weight * gold.price * MARKUP);
+
+    el.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
 
     return {
       ...p,
