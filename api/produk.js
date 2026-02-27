@@ -1,6 +1,6 @@
 
-import { getGoldPrice } from "../lib/gold-engine";
-import getClient from "../lib/mongodb";
+import getClient from "../lib/mongodb.js";
+import { getGoldPrice } from "./gold-engine.js";
 
 export default async function handler(req, res) {
   try {
