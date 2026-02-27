@@ -28,21 +28,22 @@ export default async function handler(req, res) {
 
     const MARKUP = 1.15;
 
+    console.log("PRODUK RAW:", raw);
     const data = raw.map(p => {
 
-      const weight =
-        p.weight ||
-        Number(p.nama.match(/\d+/)?.[0]);
+    const weight =
+      p.weight ||
+      Number(p?.nama?.match(/\d+/)?.[0] || 0);
 
-      const harga =
-        Math.round(weight * gold * MARKUP);
+    const harga =
+      Math.round(weight * gold.price * MARKUP);
 
-      return {
-        ...p,
-        weight,
-        harga
-      };
-    });
+    return {
+      ...p,
+      weight,
+      harga
+    };
+  });
 
     console.log("✅ Produk ditemukan:", data.length);
 
