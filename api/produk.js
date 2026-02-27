@@ -1,6 +1,6 @@
 
 import getClient from "../lib/mongodb.js";
-import { getGoldPrice } from "./gold-engine.js";
+import { getGoldPrice, startGoldEngine } from "./gold-engine.js";
 
 export default async function handler(req, res) {
   try {
@@ -13,7 +13,6 @@ export default async function handler(req, res) {
 
     /* START GOLD ENGINE SEKALI SAJA */
     if (!global.goldEngineStarted) {
-      startGoldEngine();
       global.goldEngineStarted = true;
       console.log("🚀 Gold Engine Started (GLOBAL)");
     }
