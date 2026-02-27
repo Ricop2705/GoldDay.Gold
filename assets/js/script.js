@@ -750,7 +750,7 @@ async function updateGoldTicker(){
     const res = await fetch("/api/gold-price");
     const data = await res.json();
     
-    console.log("GOLD API:", data);
+    console.log("GOLD API:", gold);
 
     const directionEl = document.getElementById("goldDirection");
     const percentEl   = document.getElementById("goldPercent");
@@ -758,12 +758,16 @@ async function updateGoldTicker(){
     const timeEl = document.getElementById("goldTime");
 
 targetPrice = data.price;
+livePrice = gold.price;
+
+startRealtimeTick();
+updateProductPrices(gold.price);
 
 if(!livePrice){
   livePrice = targetPrice;
 }
 
-startRealtimeTick();
+
 
 /* ===== HITUNG PERUBAHAN ===== */
 
