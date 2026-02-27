@@ -54,7 +54,9 @@ async function loadProduk() {
         <div class="produk-header">${p.badge}</div>
         <img class="produk-img" src="${p.gambar}" />
         <h3>${p.nama}</h3>
-        <p class="produk-price">
+        <p class="produk-price"
+          data-weight="${p.berat}"
+          data-last="0">
           Rp ${Number(p.harga).toLocaleString("id-ID")}
         </p>
       `;
@@ -750,7 +752,7 @@ async function updateGoldTicker(){
     const res = await fetch("/api/gold-price");
     const data = await res.json();
     
-    console.log("GOLD API:", gold);
+    console.log("GOLD API:", data);
 
     const directionEl = document.getElementById("goldDirection");
     const percentEl   = document.getElementById("goldPercent");
@@ -758,13 +760,13 @@ async function updateGoldTicker(){
     const timeEl = document.getElementById("goldTime");
 
 targetPrice = data.price;
-livePrice = gold.price;
+livePrice = data.price;
 
 startRealtimeTick();
-updateProductPrices(gold.price);
+updateProductPrices(data.price);
 
 if(!livePrice){
-  livePrice = targetPrice;
+  livePrice = data.price;
 }
 
 
@@ -899,9 +901,6 @@ function animateRolling(el, start, end, duration=700){
 /* ==========================
    MINI GOLD LIVE CHART
 ========================== */
-
-const goldHistory = [];
-
 function drawGoldChart(price){
 
   const canvas = document.getElementById("goldChart");
