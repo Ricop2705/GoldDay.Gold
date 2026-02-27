@@ -234,9 +234,6 @@ if(cartIcon){
     cartIcon.classList.remove("bounce");
   },450);
 }
-
-
-
 }
 
 
@@ -711,41 +708,37 @@ function startRealtimeTick(){
 
     const diff = targetPrice - livePrice;
 
-
-    // gerakan smooth (easing)
+    // smooth easing
     livePrice += diff * 0.08;
 
-    // stop kalau sudah dekat
     if(Math.abs(diff) < 1){
       livePrice = targetPrice;
     }
 
-    const el = document.getElementById("goldPrice");
-
-    if(el){
-      el.innerText =
-        "Rp " +
-        Math.floor(livePrice)
-        .toLocaleString("id-ID");
-    }
-      updateProductPrices(livePrice);
-  }, 1000); // ⭐ tiap 1 detik
-
-  const priceEl = document.getElementById("goldPrice");
+    const priceEl = document.getElementById("goldPrice");
 
     if(priceEl){
 
       priceEl.classList.remove("price-up","price-down");
-      void priceEl.offsetWidth; // reset animasi
+      void priceEl.offsetWidth;
 
       if(livePrice > lastLiveGold){
         priceEl.classList.add("price-up");
       }else if(livePrice < lastLiveGold){
         priceEl.classList.add("price-down");
       }
+
+      priceEl.innerText =
+        "Rp " + Math.floor(livePrice).toLocaleString("id-ID");
     }
 
+    // ⭐ update produk tiap tick
+    updateProductPrices(livePrice);
+
+    // ⭐ simpan harga terakhir
     lastLiveGold = livePrice;
+
+  }, 1000);
 }
 /* ===== MARKET BAR UPDATE ===== */
 
