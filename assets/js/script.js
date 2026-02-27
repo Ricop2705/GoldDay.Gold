@@ -55,9 +55,9 @@ async function loadProduk() {
         <img class="produk-img" src="${p.gambar}" />
         <h3>${p.nama}</h3>
         <p class="produk-price"
-          data-weight="${p.berat}"
+          data-weight="${p.weight}"
           data-last="0">
-          Rp ${Number(p.harga).toLocaleString("id-ID")}
+          Rp --
         </p>
       `;
 
