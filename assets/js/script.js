@@ -224,7 +224,11 @@ function animateQty(el){
 
 function addToCart(nama,harga){
 
-  harga = harga.replace(/[^\d]/g,"");
+  if(typeof harga === "string"){
+    harga = harga.replace(/[^\d]/g,"");
+  }
+
+  harga = Number(harga);
 
   const exist = CART.find(i=>i.nama===nama);
 
