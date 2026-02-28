@@ -227,6 +227,11 @@ function addToCart(nama,harga){
     CART.push({nama,harga:Number(harga),qty:1});
   }
 
+  if(harga <= 0){
+  alert("Harga sedang update, coba lagi 1 detik.");
+  return;
+}
+
   saveCart();
   renderCart();
   updateCartCount();
