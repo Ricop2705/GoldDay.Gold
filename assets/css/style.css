@@ -557,10 +557,23 @@ body.auth-open{
   border:1px solid rgba(212,175,55,.15);
   backdrop-filter:blur(16px);
   border-radius:20px;
-  transition:.35s;
-  transform-style:preserve-3d;
+
   position:relative;
-  overflow:hidden;
+
+  display:flex;
+  flex-direction:column;
+
+  overflow:visible; /* ⭐ INI KUNCI */
+}
+
+.produk-body{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.btn-beli{
+  margin-top:auto;
 }
 
 .produk-card::before{
