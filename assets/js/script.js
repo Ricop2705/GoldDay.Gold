@@ -224,11 +224,6 @@ function animateQty(el){
 
 function addToCart(nama,harga){
 
-    if(!priceReady){
-    alert("Harga sedang update...");
-    return;
-  }
-
   harga = harga.replace(/[^\d]/g,"");
 
   const exist = CART.find(i=>i.nama===nama);
@@ -237,6 +232,11 @@ function addToCart(nama,harga){
     exist.qty++;
   }else{
     CART.push({nama,harga:Number(harga),qty:1});
+  }
+
+  if(!priceReady){
+    alert("Harga sedang update...");
+    return;
   }
 
   saveCart();
