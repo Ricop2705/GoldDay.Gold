@@ -1384,3 +1384,28 @@ a{
 .switch-auth span:hover{
   text-decoration:underline;
 }
+
+.buy-btn{
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+
+  background: linear-gradient(135deg,#d4af37,#f6e27a);
+  color: #000;
+
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.buy-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212,175,55,.4);
+}
+
+.buy-btn:active{
+  transform: scale(.97);
+}
