@@ -61,7 +61,7 @@ async function loadProduk() {
       </p>
 
     <button class="buy-btn"
-      onclick="addToCart('${p.nama}','${p.harga}')"
+      onclick="addToCart('${p.nama}','${p.harga}')">
       Beli Sekarang
     </button>
 
@@ -215,33 +215,23 @@ function animateQty(el){
   },150);
 }
 
-function addToCart(btn){
+function addToCart(nama,harga){
 
-  const card = btn.closest(".produk-card");
+  harga = harga.replace(/[^\d]/g,"");
 
-  const nama =
-    card.querySelector("h3").innerText;
-
-  const hargaText =
-    card.querySelector(".produk-price").innerText;
-
-  const harga =
-    Number(hargaText.replace(/[^\d]/g,""));
-
-  const exist = CART.find(i => i.nama === nama);
+  const exist = CART.find(i=>i.nama===nama);
 
   if(exist){
     exist.qty++;
   }else{
-    CART.push({ nama, harga, qty:1 });
+    CART.push({nama,harga:Number(harga),qty:1});
   }
 
   saveCart();
   renderCart();
   updateCartCount();
 
-  document
-    .getElementById("cartPanel")
+  document.getElementById("cartPanel")
     ?.classList.add("active");
 
   // bounce icon
@@ -249,11 +239,12 @@ function addToCart(btn){
 
   if(cartIcon){
     cartIcon.classList.add("bounce");
-    setTimeout(()=>cartIcon.classList.remove("bounce"),450);
+    setTimeout(()=>{
+      cartIcon.classList.remove("bounce");
+    },450);
   }
 }
 
-window.addToCart = addToCart;
 // ⭐ WAJIB DI LUAR
 window.addToCart = addToCart;
 
