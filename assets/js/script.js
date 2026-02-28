@@ -44,28 +44,33 @@ async function loadProduk() {
     const produkList = document.getElementById("produkList");
     if (!produkList) return;
 
-    produkList.innerHTML = "";
+ produkList.innerHTML = "";
 
-    data.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "produk-card";
+  data.forEach(p => {
 
-      card.innerHTML = `
-        <div class="produk-header">${p.badge}</div>
-        <img class="produk-img" src="${p.gambar}" />
-        <h3>${p.nama}</h3>
-        <p class="produk-price"
-          data-weight="${p.weight}"
-          data-last="0">
-          Rp --
-        </p>
-      `;
+  produkList.innerHTML += `
+    <div class="produk-card">
 
-      produkList.appendChild(card);
-    });
+      <img src="${p.gambar}" class="produk-img">
 
-  } catch (err) {
-    console.error("Load produk gagal:", err);
+      <h3>${p.nama}</h3>
+
+      <p class="produk-price"
+         data-weight="${p.weight}">
+         Rp 0
+      </p>
+
+      <button class="buy-btn"
+        onclick="addToCart('${p._id}')">
+        Beli Sekarang
+      </button>
+
+    </div>
+  `;
+  });
+
+  } catch (e) {
+    console.error("Fetch error:", e);
   }
 }
 
