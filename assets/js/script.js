@@ -272,8 +272,8 @@ function addToCart(nama, btn){
     setTimeout(()=>{
       cartIcon.classList.remove("bounce");
     },450);
+  
   }
-}
 
 // ⭐ WAJIB DI LUAR
 window.addToCart = addToCart;
