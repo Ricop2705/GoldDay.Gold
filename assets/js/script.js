@@ -222,13 +222,14 @@ function animateQty(el){
   },150);
 }
 
-function addToCart(nama,harga){
+function addToCart(nama,btn){
 
-  if(typeof harga === "string"){
-    harga = harga.replace(/[^\d]/g,"");
-  }
+  const priceEl = 
+  btn.closest(".produk-card")
+    .querySelector(".produk-price");
 
-  harga = Number(harga);
+  const harga = 
+    Number(priceEl.dataset.last || priceEl.innerText.replace(/[^\d]/g,""));
 
   const exist = CART.find(i=>i.nama===nama);
 
