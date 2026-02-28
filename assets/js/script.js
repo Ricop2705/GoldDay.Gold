@@ -218,7 +218,8 @@ function animateQty(el){
 function addToCart(nama,harga){
   harga=harga.replace(/[^\d]/g,"");
   const exist=CART.find(i=>i.nama===nama);
-
+  window.addToCart = addToCart;
+  
   if(exist){
     exist.qty++;
   }else{
