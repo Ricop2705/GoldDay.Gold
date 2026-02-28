@@ -148,7 +148,7 @@ function renderCart(){
     div.innerHTML=`
       <div>
         <b>${item.nama}</b>
-        <p>Rp ${item.harga.toLocaleString()}</p>
+        <p>Rp ${(item.harga || 0).toLocaleString()}</p>
       </div>
 
       <div class="cart-qty">
