@@ -330,6 +330,7 @@ body.auth-open{
 .hero{
   position:relative;
   min-height:calc(100vh - 80px);
+  width: 100%;
 
   display:flex;
   align-items:center;
@@ -695,6 +696,18 @@ body.auth-open{
     right: 0;
     border-radius: 0;
   }
+
+  @media (max-width:768px){
+
+  .navbar{
+    padding:12px 14px;
+  }
+
+  .nav-links{
+    display:none; /* nanti kita bikin hamburger */
+  }
+
+}
 
 }
 
@@ -1448,4 +1461,48 @@ a{
 
 .buy-btn:active{
   transform: scale(.97);
+}
+
+/* =========================
+   MOBILE HERO FIX
+========================= */
+
+@media (max-width:768px){
+
+  .hero{
+    padding: 80px 20px 60px;
+    text-align:center;
+    min-height: auto;
+  }
+
+  .hero-content{
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero h1{
+    font-size: 34px;
+    line-height: 1.2;
+    letter-spacing: 1px;
+  }
+
+  .hero p{
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: .85;
+  }
+
+  .hero-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+  }
+
+  .hero-buttons a,
+  .hero-buttons button{
+    width:100%;
+    max-width:260px;
+  }
+
 }
