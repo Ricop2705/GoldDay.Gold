@@ -1,6 +1,8 @@
 // GLOBAL GOLD STATE
 let lastLiveGold = 0;
 
+let priceReady = false;
+
 let CART = JSON.parse(localStorage.getItem("cart")) || [];
 
 console.log("SCRIPT CONNECTED");
@@ -60,10 +62,11 @@ async function loadProduk() {
          Rp 0
       </p>
 
-    <button class="buy-btn"
-      onclick="addToCart('${p.nama}','${p.harga}')">
-      Beli Sekarang
-    </button>
+      <button class="buy-btn"
+        disabled
+        onclick="addToCart('${p.nama}', this)">
+        Beli Sekarang
+      </button>
 
     </div>
   `;
@@ -109,6 +112,10 @@ function updateProductPrices(goldPrice){
       el.innerText =
         "Rp " + newPrice.toLocaleString("id-ID");
 
+        priceReady = true;
+
+        document.querySelectorAll(".buy-btn")
+          .forEach(btn => btn.disabled = false);
     });
 }
 
@@ -216,6 +223,11 @@ function animateQty(el){
 }
 
 function addToCart(nama,harga){
+  
+    if(!priceReady){
+    alert("Harga sedang update...");
+    return;
+  }
 
   harga = harga.replace(/[^\d]/g,"");
 
