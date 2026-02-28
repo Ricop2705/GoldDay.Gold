@@ -83,24 +83,40 @@ function updateProductPrices(goldPrice){
   const MARKUP = 1.15;
 
   document.querySelectorAll(".produk-price")
-  .forEach(el=>{
+    .forEach(el=>{
 
-    const weight = Number(el.dataset.weight);
-    if(!weight) return;
+      const weight = Number(el.dataset.weight);
+      if(!weight) return;
 
-    const newPrice =
-      Math.round(weight * goldPrice * MARKUP);
+      const MARKUP = 1.15;
 
-    // ⭐ CEGAH UPDATE BERULANG
-    if(Number(el.dataset.rendered) === newPrice){
-      return;
-    }
+      // ⭐ hitung dulu
+      const newPrice =
+        Math.round(weight * goldPrice * MARKUP);
 
-    el.dataset.rendered = newPrice;
+      const oldPrice =
+        Number(el.dataset.last || newPrice);
 
-    el.innerText =
-      "Rp " + newPrice.toLocaleString("id-ID");
-  });
+      el.dataset.last = newPrice;
+
+      // reset animasi
+      el.classList.remove("price-up","price-down");
+      void el.offsetWidth;
+
+      if(newPrice > oldPrice){
+        el.classList.add("price-up");
+      }else if(newPrice < oldPrice){
+        el.classList.add("price-down");
+      }
+
+      el.innerText =
+        "Rp " + newPrice.toLocaleString("id-ID");
+
+        priceReady = true;
+
+        document.querySelectorAll(".buy-btn")
+          .forEach(btn => btn.disabled = false);
+    });
 }
 
 /* CART */
@@ -132,7 +148,7 @@ function renderCart(){
     div.innerHTML=`
       <div>
         <b>${item.nama}</b>
-        <p>Rp ${(item.harga || 0).toLocaleString()}</p>
+        <p>Rp ${item.harga.toLocaleString()}</p>
       </div>
 
       <div class="cart-qty">
@@ -734,9 +750,9 @@ function startRealtimeTick(){
     const diff = targetPrice - livePrice;
 
     // smooth easing
-    livePrice += diff * 0.25;
+    livePrice += diff * 0.08;
 
-    if(Math.abs(diff) < 50){
+    if(Math.abs(diff) < 1){
       livePrice = targetPrice;
     }
 
