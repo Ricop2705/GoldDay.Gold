@@ -222,14 +222,19 @@ function animateQty(el){
   },150);
 }
 
-function addToCart(nama,btn){
+function addToCart(nama, btn){
 
-  const priceEl = 
-  btn.closest(".produk-card")
-    .querySelector(".produk-price");
+  const priceEl =
+    btn.closest(".produk-card")
+       .querySelector(".produk-price");
 
-  const harga = 
-    Number(priceEl.dataset.last || priceEl.innerText.replace(/[^\d]/g,""));
+  const harga =
+    Number(priceEl.innerText.replace(/[^\d]/g,""));
+
+  if(!harga){
+    alert("Harga sedang update...");
+    return;
+  }
 
   const exist = CART.find(i=>i.nama===nama);
 
@@ -237,11 +242,6 @@ function addToCart(nama,btn){
     exist.qty++;
   }else{
     CART.push({nama,harga:Number(harga),qty:1});
-  }
-
-  if(!priceReady){
-    alert("Harga sedang update...");
-    return;
   }
 
   saveCart();
@@ -271,7 +271,7 @@ function buildWhatsApp(subtotal){
 
   let text="Halo Admin, saya ingin order:%0A%0A";
   CART.forEach(item=>{
-    text+=`• ${item.nama} x${item.qty} - Rp ${(item.harga*item.qty).toLocaleString()}%0A`;
+    text+=`• ${item.nama} x${item.qty} - Rp ${(item.harga || 0).toLocaleString("id-ID")}%0A`;
   });
   text+=`%0ATotal: Rp ${subtotal.toLocaleString()}`;
   btn.href="https://wa.me/6285717442694?text="+text;
