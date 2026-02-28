@@ -60,10 +60,10 @@ async function loadProduk() {
          Rp 0
       </p>
 
-      <button class="buy-btn"
-        onclick="addToCart('${p._id}')">
-        Beli Sekarang
-      </button>
+    <button class="buy-btn"
+      onclick="addToCart('${p.nama}','${p.harga}')">
+      Beli Sekarang
+    </button>
 
     </div>
   `;
@@ -216,10 +216,11 @@ function animateQty(el){
 }
 
 function addToCart(nama,harga){
-  harga=harga.replace(/[^\d]/g,"");
-  const exist=CART.find(i=>i.nama===nama);
-  window.addToCart = addToCart;
-  
+
+  harga = harga.replace(/[^\d]/g,"");
+
+  const exist = CART.find(i=>i.nama===nama);
+
   if(exist){
     exist.qty++;
   }else{
@@ -230,20 +231,22 @@ function addToCart(nama,harga){
   renderCart();
   updateCartCount();
 
-  document.getElementById("cartPanel")?.classList.add("active");
+  document.getElementById("cartPanel")
+    ?.classList.add("active");
 
-    /*CART ICON BOUNCE*/
-const cartIcon = document.getElementById("cartIcon");
+  // bounce icon
+  const cartIcon = document.getElementById("cartIcon");
 
-if(cartIcon){
-  cartIcon.classList.add("bounce");
-
-  setTimeout(()=>{
-    cartIcon.classList.remove("bounce");
-  },450);
+  if(cartIcon){
+    cartIcon.classList.add("bounce");
+    setTimeout(()=>{
+      cartIcon.classList.remove("bounce");
+    },450);
+  }
 }
-}
 
+// ⭐ WAJIB DI LUAR
+window.addToCart = addToCart;
 
 function buildWhatsApp(subtotal){
   const btn=document.getElementById("checkoutWA");
