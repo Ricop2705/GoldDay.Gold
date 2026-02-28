@@ -224,15 +224,22 @@ function animateQty(el){
 
 function addToCart(nama, btn){
 
-  const priceEl =
-    btn.closest(".produk-card")
-       .querySelector(".produk-price");
+  // cari harga dari card yang sama
+  const card = btn.closest(".produk-card");
+  const priceEl = card.querySelector(".produk-price");
 
-  const harga =
-    Number(priceEl.innerText.replace(/[^\d]/g,""));
+  if(!priceEl){
+    alert("Harga belum siap");
+    return;
+  }
 
-  if(!harga){
-    alert("Harga sedang update...");
+  // ambil angka dari text
+  const harga = Number(
+    priceEl.innerText.replace(/[^\d]/g,"")
+  );
+
+  if(!harga || harga <= 0){
+    alert("Harga sedang update, coba lagi 1 detik.");
     return;
   }
 
@@ -241,15 +248,21 @@ function addToCart(nama, btn){
   if(exist){
     exist.qty++;
   }else{
-    CART.push({nama,harga:Number(harga),qty:1});
+    CART.push({
+      nama,
+      harga,
+      qty:1
+    });
   }
 
   saveCart();
   renderCart();
   updateCartCount();
 
-  document.getElementById("cartPanel")
+  document
+    .getElementById("cartPanel")
     ?.classList.add("active");
+}
 
   // bounce icon
   const cartIcon = document.getElementById("cartIcon");
@@ -271,7 +284,7 @@ function buildWhatsApp(subtotal){
 
   let text="Halo Admin, saya ingin order:%0A%0A";
   CART.forEach(item=>{
-    text+=`• ${item.nama} x${item.qty} - Rp ${(item.harga || 0).toLocaleString("id-ID")}%0A`;
+    text+=`• ${item.nama} x${item.qty} - Rp ${(item.harga*item.qty).toLocaleString()}%0A`;
   });
   text+=`%0ATotal: Rp ${subtotal.toLocaleString()}`;
   btn.href="https://wa.me/6285717442694?text="+text;
