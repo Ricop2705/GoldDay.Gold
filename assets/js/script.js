@@ -61,7 +61,7 @@ async function loadProduk() {
       </p>
 
     <button class="buy-btn"
-      onclick="addToCart(this)"
+      onclick="addToCart('${p.nama}','${p.harga}')"
       Beli Sekarang
     </button>
 
