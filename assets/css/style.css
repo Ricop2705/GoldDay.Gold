@@ -1470,32 +1470,42 @@ a{
 @media (max-width:768px){
 
   .hero{
-    padding: 80px 20px 60px;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
     text-align:center;
     min-height: auto;
+
+    padding: 90px  18px 60px  !important;
+    margin: 0 !important;
+    width: 100%;
   }
 
   .hero-content{
-    max-width: 100%;
-    margin: 0 auto;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
   }
 
+  /* TEXT SCALING */
+
   .hero h1{
-    font-size: 34px;
+    font-size: 34px !important;
     line-height: 1.2;
-    letter-spacing: 1px;
   }
 
   .hero p{
-    font-size: 14px;
-    line-height: 1.6;
-    opacity: .85;
+    font-size: 14px !important;
   }
+
+  /* BUTTONS STACK */
 
   .hero-buttons{
     display:flex;
     flex-direction:column;
     gap:12px;
+    width: 100%;
     align-items:center;
   }
 
