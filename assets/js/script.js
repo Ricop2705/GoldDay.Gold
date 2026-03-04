@@ -703,7 +703,6 @@ let lastGoldPrice = 0;
 let displayedGoldPrice = 0;
 let targetGoldPrice = 0;
 let rollingAnimation = null;
-let livePrice = 0;
 let targetPrice = 0;
 let tickTimer = null;
 
@@ -1059,6 +1058,7 @@ if(goLogin){
   };
 }
 
+
 setInterval(()=> {
   if(document.getElementById("produkList")){
     loadProduk();
@@ -1067,3 +1067,97 @@ setInterval(()=> {
 
   updateGoldTicker();
   setInterval(updateGoldTicker, 10000);
+
+  /* =========================
+   REALTIME GOLD ENGINE
+========================= */
+
+let apiPrice = 0;
+let livePrice = 0;
+
+async function fetchGold(){
+
+  try{
+
+    const res = await fetch("/api/gold-price");
+    const data = await res.json();
+
+    apiPrice = data.price;
+
+    if(!livePrice){
+      livePrice = apiPrice;
+    }
+
+    updateGoldTickerUI(apiPrice);
+
+  }catch(err){
+    console.log("Gold API error",err);
+  }
+
+}
+
+/* ===== TICKER UPDATE ===== */
+
+function updateGoldTickerUI(price){
+
+  const priceEl = document.getElementById("goldPrice");
+  const timeEl = document.getElementById("goldTime");
+
+  if(priceEl){
+    priceEl.innerText =
+      "Rp " + price.toLocaleString("id-ID");
+  }
+
+  if(timeEl){
+    const d = new Date();
+    timeEl.innerText =
+      "Updated " +
+      d.getHours().toString().padStart(2,"0") +
+      ":" +
+      d.getMinutes().toString().padStart(2,"0");
+  }
+
+}
+
+/* ===== SMOOTH LIVE TICK ===== */
+
+function startLiveGold(){
+
+  setInterval(()=>{
+
+    if(!apiPrice) return;
+
+    const diff = apiPrice - livePrice;
+
+    livePrice += diff * 0.08;
+
+    if(Math.abs(diff) < 1){
+      livePrice = apiPrice;
+    }
+
+    const priceEl = document.getElementById("goldPrice");
+
+    if(priceEl){
+
+      priceEl.innerText =
+        "Rp " +
+        Math.floor(livePrice)
+        .toLocaleString("id-ID");
+
+    }
+
+    updateProductPrices(livePrice);
+
+    drawGoldChart(livePrice);
+
+  },1000);
+
+}
+
+/* ===== START ENGINE ===== */
+
+fetchGold();
+startLiveGold();
+
+/* refresh API tiap 15 detik */
+setInterval(fetchGold,15000);
