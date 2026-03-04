@@ -48,6 +48,8 @@ body.auth-open{
 ====================================== */
 
 .navbar{
+  display:flex;
+  justify-content:space-between;
   position:fixed;
   top:16px;
   left:50%;
@@ -58,7 +60,7 @@ body.auth-open{
 
   padding:10px 22px;
 
-  display:grid;
+
   grid-template-columns: 1fr auto 1fr;
   align-items:center;
 
@@ -134,7 +136,7 @@ body.auth-open{
 @media (max-width:768px){
 
   .menu{
-    display:none;
+    display:flex;
     list-style:none;
     gap:30px;
     align-items:center;
@@ -697,25 +699,21 @@ body.auth-open{
   animation:goldHeaderShine 6s ease-in-out infinite;
 }
 
-@media (max-width: 768px){
+@media (max-width:768px){
 
   #cartPanel{
-    width: 100%;
-    right: 0;
-    border-radius: 0;
+    width:100%;
+    right:0;
+    border-radius:0;
   }
-
-  @media (max-width:768px){
 
   .navbar{
     padding:12px 14px;
   }
 
-  .nav-links{
-    display:none; /* nanti kita bikin hamburger */
+  .menu{
+    display:none;
   }
-
-}
 
 }
 
@@ -1479,8 +1477,9 @@ a{
 @media (max-width:768px){
 
   .hero{
-    display: flex !important;
-    flex-direction: column !important;
+    display:flex;
+    flex-direction:column;
+    text-align:center;
     justify-content: center;
     align-items: center;
     text-align:center;
@@ -1530,8 +1529,6 @@ a{
 
   .hero-grid{
     grid-template-columns:1fr;
-    gap:30px;
-    padding:0 20px;
     text-align:center;
   }
 
