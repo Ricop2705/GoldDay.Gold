@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       Number(p?.nama?.match(/\d+/)?.[0] || 0);
 
     const harga =
-      Math.round(weight * gold.price * MARKUP);
+      Math.round(weight * gold * MARKUP);
 
     return {
       ...p,

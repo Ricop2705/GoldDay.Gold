@@ -4,7 +4,7 @@ let GOLD_STATE = {
   running: false
 };
 
-const UPDATE_INTERVAL = 30000; // 30 detik
+const UPDATE_INTERVAL = 5000; // 5 detik
 const KURS = 16800;
 const PPH = 0.0025; // 0.25%
 

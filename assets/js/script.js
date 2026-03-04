@@ -1066,3 +1066,4 @@ setInterval(()=> {
 },30000);
 
   updateGoldTicker();
+  setInterval(updateGoldTicker, 10000);
