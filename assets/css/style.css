@@ -706,15 +706,6 @@ body.auth-open{
     right:0;
     border-radius:0;
   }
-
-  .navbar{
-    padding:12px 14px;
-  }
-
-  .menu{
-    display:none;
-  }
-
 }
 
   h1,h2{
@@ -728,7 +719,6 @@ body.auth-open{
     padding: 14px;
   }
 
-}
 
 @keyframes goldHeaderShine{
   to{
