@@ -717,8 +717,6 @@ body.auth-open{
 
 }
 
-@media (max-width:768px){
-
   h1,h2{
     font-size: 22px;
     text-align:center;
@@ -1468,72 +1466,4 @@ a{
 
 .buy-btn:active{
   transform: scale(.97);
-}
-
-/* =========================
-   MOBILE HERO FIX
-========================= */
-
-@media (max-width:768px){
-
-  .hero{
-    display:flex;
-    flex-direction:column;
-    text-align:center;
-    justify-content: center;
-    align-items: center;
-    text-align:center;
-    min-height: auto;
-
-    padding:60px 18px 40px !important;
-    margin: 0 !important;
-    width: 100%;
-  }
-
-  .hero-content{
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  /* TEXT SCALING */
-
-  .hero h1{
-    font-size: 34px !important;
-    line-height: 1.2;
-  }
-
-  .hero p{
-    font-size: 14px !important;
-  }
-
-  /* BUTTONS STACK */
-
-  .hero-buttons{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    width: 100%;
-    align-items:center;
-  }
-
-  .hero-buttons a,
-  .hero-buttons button{
-    width:100%;
-    max-width:260px;
-  }
-
-}
-
-@media (max-width:768px){
-
-  .hero-grid{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-
-  .hero-right{
-    justify-content:center;
-  }
-
 }
