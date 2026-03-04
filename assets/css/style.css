@@ -140,7 +140,7 @@ body.auth-open{
 
 }
 
-.menu a active{
+.menu a.active{
   color:#fff;
   font-weight:600;
 }
@@ -388,13 +388,12 @@ body.auth-open{
   display:grid;
   grid-template-columns:1.1fr 1fr;
   gap:60px;
-  max-width:1200px;
-  margin:auto;
-  padding:0 20px;
-  position:relative;
-  z-index:2;
-  align-items:center;
 
+  width:100%;
+  max-width:1600px;
+
+  margin:auto;
+  padding:0 60px;
 }
 
 /* TITLE */
@@ -517,10 +516,11 @@ body.auth-open{
 .hero-right{
   display:flex;
   justify-content:flex-end;
+  align-items:center;
 }
 
 .hero-gold{
-  max-width:440px;
+  max-width:520px;
   width:100%;
   transform:translateZ(40px);
 
