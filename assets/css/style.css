@@ -133,7 +133,6 @@ body.auth-open{
 }
 
 /* MENU */
-@media (max-width:768px){
 
   .menu{
     display:flex;
@@ -143,7 +142,6 @@ body.auth-open{
     justify-self:center;
 
   }
-}
 
 .menu a.active{
   color:#fff;
