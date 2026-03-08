@@ -390,7 +390,7 @@ body.auth-open{
 .hero-grid{
   display:grid;
   grid-template-columns:1.1fr 1fr;
-  align-items:left;
+  align-items:grid;
   gap:80px;
 
   width:100%;
@@ -405,6 +405,7 @@ body.auth-open{
   flex-direction:column;
   justify-content:center;
   gap: 20px;
+  text-align: left;
   
 }
 
@@ -415,6 +416,7 @@ body.auth-open{
       font-weight:700;
       letter-spacing:-1px;
       margin-bottom:8px;
+      text-align: left;
 
       position:relative;
       overflow:hidden;
