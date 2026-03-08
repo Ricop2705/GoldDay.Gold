@@ -1417,6 +1417,33 @@ a{
   opacity:.9;
 }
 
+.market-info{
+
+margin-top:4px;
+
+display:flex;
+gap:10px;
+
+justify-content:center;
+align-items:center;
+
+font-size:11px;
+color:#999;
+
+}
+
+.market-source{
+
+opacity:.7;
+
+}
+
+.market-update{
+
+color:#d4af37;
+
+}
+
 /* ===== ROLLING PRICE ===== */
 
 .price-roll{
@@ -1479,4 +1506,21 @@ a{
 
 .buy-btn:active{
   transform: scale(.97);
+}
+
+.price-disclaimer{
+
+text-align:center;
+
+margin-top:40px;
+
+font-size:13px;
+color:#888;
+
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+
+line-height:1.6;
+
 }

@@ -12,23 +12,34 @@
 
 <body>
   
-  <div class="gold-ticker">
+  <div class="market-bar">
   
-  <span class="gold-label">EMAS ANTAM</span>
+  <span class="market-name">EMAS ANTAM</span>
 
-  <span id="goldDirection">▲</span>
-  <span id="goldPercent">0.00%</span>
+  <span id="goldDirection" class="goldMiniChart">▲</span>
+  <span id="goldPercent" class="market-change up">0.00%</span>
 
-  <span id="goldPrice">Rp --</span>
+  <span id="goldPrice" class="market-price">Rp --</span>
 
   <canvas id="goldChart" width="120" height="40"></canvas>
   
-  <span id="goldTime" class="gold-time">
+  <span id="goldTime" class="market-time">
     Updated --
   </span>
+  
 
 </div>
+    <div class="market-info">
 
+        <span class="market-source">
+        Harga mengikuti pasar emas dunia
+        </span>
+
+        <span class="market-update" id="marketUpdate">
+        update realtime
+        </span>
+
+    </div>
 <div class="gold-dust" id="goldDust"></div>
 
 <header class="navbar">
@@ -122,6 +133,10 @@
 <section id="produk" class="produk">
   <h2>Produk Emas Antam</h2>
   <div class="produk-grid" id="produkList"></div>
+  <p class="price-disclaimer">
+  Harga dapat berubah mengikuti pasar emas global.
+  Harga final dikonfirmasi saat transaksi melalui WhatsApp.
+  </p>
 </section>
 
 <footer>

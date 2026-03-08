@@ -807,6 +807,23 @@ if(!livePrice){
   livePrice = data.price;
 }
 
+function updateMarketTime(){
+
+const now = new Date();
+
+const hours = now.getHours().toString().padStart(2,"0");
+const minutes = now.getMinutes().toString().padStart(2,"0");
+
+const time = `${hours}:${minutes} WIB`;
+
+document.getElementById("marketUpdate").innerText =
+"update " + time;
+
+}
+
+updateMarketTime();
+
+setInterval(updateMarketTime,60000);
 
 
 /* ===== HITUNG PERUBAHAN ===== */
