@@ -546,6 +546,25 @@ body.auth-open{
   animation:floatGold 6s ease-in-out infinite;
 }
 
+.hero-trust{
+margin-top:18px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.hero-trust span{
+font-size:13px;
+padding:6px 12px;
+
+border-radius:20px;
+
+background:rgba(212,175,55,.08);
+border:1px solid rgba(212,175,55,.18);
+
+color:#d4af37;
+}
+
 @keyframes floatGold{
   0%{ transform:translateZ(40px) translateY(0px); }
   50%{ transform:translateZ(40px) translateY(-10px); }
