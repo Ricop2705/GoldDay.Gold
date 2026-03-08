@@ -390,13 +390,22 @@ body.auth-open{
 .hero-grid{
   display:grid;
   grid-template-columns:1.1fr 1fr;
-  gap:60px;
+  align-items:center;
+  gap:80px;
 
   width:100%;
-  max-width:1600px;
+  max-width:1400px;
 
   margin:auto;
-  padding:0 60px;
+  padding:0 80px;
+}
+
+.hero-left{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:18px;
+  max-width: 520px;
 }
 
 /* TITLE */
@@ -405,7 +414,7 @@ body.auth-open{
       line-height:1.2;
       font-weight:700;
       letter-spacing:-1px;
-      margin-bottom:12px;
+      margin-bottom:8px;
 
       position:relative;
       overflow:hidden;
@@ -457,7 +466,7 @@ body.auth-open{
 
 /* TEXT */
 .hero p{
-  margin-top:18px;
+  margin-top:6px;
   color:#9a9a9a;
   max-width:520px;
   line-height:1.7;
