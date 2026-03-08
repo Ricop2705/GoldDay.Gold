@@ -338,7 +338,7 @@ body.auth-open{
   display:flex;
   align-items:center;
 
-  padding-top:40px;
+  padding-top:80px;
   padding-bottom:60px;
 
   overflow:hidden;
@@ -404,14 +404,14 @@ body.auth-open{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  gap:18px;
-  max-width: 520px;
+  gap: 20px;
+  
 }
 
 /* TITLE */
     .hero-title{
-      font-size:36px;
-      line-height:1.2;
+      font-size:64px;
+      line-height:1.1;
       font-weight:700;
       letter-spacing:-1px;
       margin-bottom:8px;
