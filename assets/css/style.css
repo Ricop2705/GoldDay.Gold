@@ -1524,3 +1524,92 @@ margin-right:auto;
 line-height:1.6;
 
 }
+
+/* ======================================
+   TESTIMONI SECTION
+====================================== */
+
+.testimoni-section{
+
+padding:120px 20px;
+
+max-width:1100px;
+margin:auto;
+
+text-align:center;
+
+}
+
+.testimoni-section h2{
+
+color:#d4af37;
+
+margin-bottom:50px;
+
+font-weight:600;
+
+}
+
+.testimoni-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:24px;
+
+}
+
+.testimoni-card{
+
+background:rgba(255,255,255,.02);
+
+border:1px solid rgba(212,175,55,.15);
+
+border-radius:20px;
+
+padding:28px;
+
+backdrop-filter:blur(12px);
+
+transition:.3s;
+
+}
+
+.testimoni-card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 18px 50px rgba(0,0,0,.6),
+0 0 0 1px rgba(212,175,55,.2);
+
+}
+
+.stars{
+
+color:#ffd700;
+
+font-size:18px;
+
+margin-bottom:10px;
+
+}
+
+.testimoni-card p{
+
+color:#bbb;
+
+line-height:1.6;
+
+margin-bottom:12px;
+
+}
+
+.buyer{
+
+font-size:13px;
+
+color:#888;
+
+}
