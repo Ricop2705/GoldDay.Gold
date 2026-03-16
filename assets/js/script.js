@@ -222,6 +222,16 @@ function animateQty(el){
   },150);
 }
 
+const grid = document.querySelector(".produk-grid");
+
+document.getElementById("slideLeft").onclick = () => {
+grid.scrollBy({ left: -300, behavior: "smooth" });
+};
+
+document.getElementById("slideRight").onclick = () => {
+grid.scrollBy({ left: 300, behavior: "smooth" });
+};
+
 function addToCart(nama, btn){
 
   // cari harga dari card yang sama
@@ -1170,6 +1180,8 @@ function startLiveGold(){
   },1000);
 
 }
+
+
 
 /* ===== START ENGINE ===== */
 
