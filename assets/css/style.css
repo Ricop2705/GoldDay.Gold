@@ -591,19 +591,6 @@ color:#d4af37;
   letter-spacing:.5px;
 }
 
-.produk-grid{
-
-display:flex;
-
-gap:24px;
-
-overflow-x:auto;
-
-padding:20px;
-
-scroll-behavior:smooth;
-
-}
 
 .produk-grid::-webkit-scrollbar{
 display:none;
@@ -615,6 +602,7 @@ display:none;
 position:relative;
 display:flex;
 align-items:center;
+justify-content: center;
 }
 
 /* grid horizontal */
@@ -630,13 +618,14 @@ scroll-behavior:smooth;
 
 scroll-snap-type:x mandatory;
 
-padding:20px;
+padding:30px 60px;
 
+scroll-behavior:smooth;
 }
 
 .produk-card{
 
-min-width:260px;
+min-width:320px;
 
 flex-shrink:0;
 
@@ -832,10 +821,6 @@ right:-10px;
     border-radius:0;
   }
 
-  h1,h2{
-    font-size: 22px;
-    text-align:center;
-  }
 
   .produk-grid{
     grid-template-columns:1fr 1fr;
