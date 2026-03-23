@@ -6,32 +6,44 @@ const client = new MongoClient(process.env.MONGODB_URI);
 
 export default async function handler(req,res){
 
-  if(req.method !== "POST")
-    return res.status(405).end();
+  try{
 
-  const { email, password } = req.body;
+    if(req.method !== "POST")
+      return res.status(405).end();
 
-  const conn = await client.connect();
-  const db = conn.db("emasDB");
+    const { email, password } = req.body;
 
-  const user =
-    await db.collection("users")
-    .findOne({email});
+    const conn = await client.connect();
+    const db = conn.db("emasDB");
 
-  if(!user)
-    return res.status(401).json({error:"User tidak ditemukan"});
+    const user =
+      await db.collection("users").findOne({email});
 
-  const valid =
-    await bcrypt.compare(password,user.password);
+    if(!user)
+      return res.status(401).json({error:"User tidak ditemukan"});
 
-  if(!valid)
-    return res.status(401).json({error:"Password salah"});
+    const valid =
+      await bcrypt.compare(password,user.password);
 
-  const token = jwt.sign(
-    { id:user._id, email:user.email },
-    process.env.JWT_SECRET,
-    { expiresIn:"7d" }
-  );
+    if(!valid)
+      return res.status(401).json({error:"Password salah"});
 
-  res.status(200).json({token});
+    const token = jwt.sign(
+      { id:user._id, email:user.email },
+      process.env.JWT_SECRET,
+      { expiresIn:"7d" }
+    );
+
+    res.status(200).json({token});
+
+  }catch(err){
+
+    console.error("LOGIN ERROR:", err);
+
+    res.status(500).json({
+      error:"Server error",
+      detail: err.message
+    });
+
+  }
 }
