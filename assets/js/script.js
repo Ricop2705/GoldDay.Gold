@@ -223,7 +223,9 @@ function animateQty(el){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    document.querySelectorAll(".cinematic").forEach(el => {
+    el.classList.add("show");
+    
   const grid = document.querySelector(".produk-grid");
   const btnLeft = document.getElementById("slideLeft");
   const btnRight = document.getElementById("slideRight");
@@ -237,7 +239,8 @@ document.addEventListener("DOMContentLoaded", () => {
   btnRight.onclick = () => {
     grid.scrollBy({ left: 400, behavior: "smooth" });
   };
-
+  
+});
 });
 
 function addToCart(nama, btn){
