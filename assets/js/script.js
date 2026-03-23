@@ -464,6 +464,7 @@ if (tabLogin && tabRegister && loginAction && registerAction) {
 
   /* CINEMATIC OBSERVER */
   const items=document.querySelectorAll(".cinematic");
+   el.classList.add("show");
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
