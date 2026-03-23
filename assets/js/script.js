@@ -222,15 +222,23 @@ function animateQty(el){
   },150);
 }
 
-const grid = document.querySelector(".produk-grid");
+document.addEventListener("DOMContentLoaded", () => {
 
-document.getElementById("slideLeft").onclick = () => {
-grid.scrollBy({ left: -300, behavior: "smooth" });
-};
+  const grid = document.querySelector(".produk-grid");
+  const btnLeft = document.getElementById("slideLeft");
+  const btnRight = document.getElementById("slideRight");
 
-document.getElementById("slideRight").onclick = () => {
-grid.scrollBy({ left: 300, behavior: "smooth" });
-};
+  if (!grid || !btnLeft || !btnRight) return;
+
+  btnLeft.onclick = () => {
+    grid.scrollBy({ left: -400, behavior: "smooth" });
+  };
+
+  btnRight.onclick = () => {
+    grid.scrollBy({ left: 400, behavior: "smooth" });
+  };
+
+});
 
 function addToCart(nama, btn){
 
