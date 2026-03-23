@@ -310,6 +310,7 @@ function buildWhatsApp(subtotal){
 
 /* ===== DOM READY (SATU SAJA) ===== */
 document.addEventListener("DOMContentLoaded",()=>{
+    initSlider();
 
   /* CART INIT */
   renderCart();
@@ -325,23 +326,65 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.getElementById("closeCart")?.addEventListener("click",()=>{
     document.getElementById("cartPanel")?.classList.remove("active");
     document.body.classList.remove("cart-open");
-  });
 
-  
-  /* LOGIN STATE */
-  const user=JSON.parse(localStorage.getItem("user"));
-  const loginBtn=document.getElementById("loginBtn");
-  const userMenu=document.getElementById("userMenu");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const loginBtn = document.getElementById("loginBtn");
+  const userMenu = document.getElementById("userMenu");
+  const avatar   = document.getElementById("avatar");
 
   if(user){
-    loginBtn && (loginBtn.style.display="none");
-    userMenu && (userMenu.style.display="flex");
+    loginBtn.style.display = "none";
+    userMenu.style.display = "flex";
+
+    // huruf avatar
+    avatar.textContent = user.nama.charAt(0).toUpperCase();
+  }
+  /* ===== AUTH SWITCH SAFE ===== */
+
+  const loginFormEl = document.getElementById("loginForm");
+  const registerForm =
+  document.getElementById("registerForm");
+
+if(registerForm){
+
+  registerForm.addEventListener("submit",async(e)=>{
+    e.preventDefault();
+
+    const data = {
+      name: registerForm[0].value,
+      email: registerForm[1].value,
+      phone: registerForm[2].value,
+      password: registerForm[3].value
+    };
+
+    const res = await fetch("/api/auth/register",{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if(result.success){
+      alert("Account berhasil dibuat ✅");
+    }else{
+      alert(result.msg);
+    }
+  });
+}
+
+  const goLogin = document.getElementById("goLogin");
+
+
+  if(goLogin){
+    goLogin.onclick = () => {
+      loginFormEl.style.display = "block";
+      registerFormEl.style.display = "none";
+    };
   }
 
-  document.getElementById("logoutBtn")?.addEventListener("click",()=>{
-    localStorage.removeItem("user");
-    location.reload();
-  });
+});
 
   /* LOGIN / REGISTER TAB */
 
@@ -517,16 +560,20 @@ doLogin.addEventListener("click", async ()=>{
     const data = await res.json();
 
     if (data.token) {
-      localStorage.setItem("token", data.token);
-      location.reload();
-    } else {
-      alert(data.error || "Login gagal");
-    }
 
-      if(!email){
-    alert("Isi email dulu");
-    return;
-  }
+  localStorage.setItem("token", data.token);
+
+  const nama = email.split("@")[0];
+
+  localStorage.setItem("user",
+    JSON.stringify({ nama })
+  );
+
+  location.reload();
+
+} else {
+  alert(data.error || "Login gagal");
+}
 
   // ambil nama dari email
   const nama = email.split("@")[0];
@@ -553,66 +600,6 @@ document.addEventListener("keydown",(e)=>{
 
 /* ===== LOGIN STATE ENGINE ===== */
 
-document.addEventListener("DOMContentLoaded",()=>{
-
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  const loginBtn = document.getElementById("loginBtn");
-  const userMenu = document.getElementById("userMenu");
-  const avatar   = document.getElementById("avatar");
-
-  if(user){
-    loginBtn.style.display = "none";
-    userMenu.style.display = "flex";
-
-    // huruf avatar
-    avatar.textContent = user.nama.charAt(0).toUpperCase();
-  }
-  /* ===== AUTH SWITCH SAFE ===== */
-
-  const loginFormEl = document.getElementById("loginForm");
-  const registerForm =
-  document.getElementById("registerForm");
-
-if(registerForm){
-
-  registerForm.addEventListener("submit",async(e)=>{
-    e.preventDefault();
-
-    const data = {
-      name: registerForm[0].value,
-      email: registerForm[1].value,
-      phone: registerForm[2].value,
-      password: registerForm[3].value
-    };
-
-    const res = await fetch("/api/auth/register",{
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-
-    if(result.success){
-      alert("Account berhasil dibuat ✅");
-    }else{
-      alert(result.msg);
-    }
-  });
-}
-
-  const goLogin = document.getElementById("goLogin");
-
-
-  if(goLogin){
-    goLogin.onclick = () => {
-      loginFormEl.style.display = "block";
-      registerFormEl.style.display = "none";
-    };
-  }
-
-});
 
 document.getElementById("logoutBtn")?.addEventListener("click",(e)=>{
   e.preventDefault();
@@ -906,45 +893,6 @@ animateGoldPrice();
   }
 }
 
-/* ===== MINI CHART DRAW ===== */
-
-function drawGoldChart(price){
-
-  const canvas = document.getElementById("goldMiniChart");
-  if(!canvas) return;
-
-  const ctx = canvas.getContext("2d");
-
-  // simpan history max 20 data
-  goldHistory.push(price);
-  if(goldHistory.length > 20){
-    goldHistory.shift();
-  }
-
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  const max = Math.max(...goldHistory);
-  const min = Math.min(...goldHistory);
-
-  ctx.beginPath();
-
-  goldHistory.forEach((p,i)=>{
-
-    const x =
-      (i/(goldHistory.length-1))*canvas.width;
-
-    const y =
-      canvas.height -
-      ((p-min)/(max-min || 1))*canvas.height;
-
-    if(i===0) ctx.moveTo(x,y);
-    else ctx.lineTo(x,y);
-  });
-
-  ctx.strokeStyle="#e6c35a";
-  ctx.lineWidth=2;
-  ctx.stroke();
-}
 /* ===== LIVE GOLD PRICE UPDATE ===== */
 
 function animateRolling(el, start, end, duration=700){
@@ -1093,14 +1041,8 @@ if(goLogin){
   };
 }
 
-
-setInterval(()=> {
-  if(document.getElementById("produkList")){
-    loadProduk();
-  }
-},30000);
-
-  updateGoldTicker();
+loadProduk(); //sekali saja saat load
+updateGoldTicker();
   setInterval(updateGoldTicker, 10000);
 
   /* =========================
